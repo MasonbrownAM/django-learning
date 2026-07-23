@@ -1,0 +1,94 @@
+{% extends 'shared/_layout.html' %}
+
+{% block title %}
+shop
+{% endblock %}
+{% block content %}
+    <div class="container py-5">
+        <div class="row">
+
+            <div class="col-lg-3">
+                <h1 class="h2 pb-4">دسته بندی</h1>
+                <ul class="list-unstyled templatemo-accordion padd-r-0">
+                    <li class="pb-3">
+                        <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
+                            جنسیت
+                            <i class="fa fa-fw fa-chevron-circle-down mt-1"></i>
+                        </a>
+                        <ul class="collapse show list-unstyled pl-3">
+                            <li><a class="text-decoration-none" href="#">مرد</a></li>
+                            <li><a class="text-decoration-none" href="#">زن</a></li>
+                        </ul>
+                    </li>
+                    <li class="pb-3">
+                        <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
+                            فروش
+                            <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
+                        </a>
+                        <ul id="collapseTwo" class="collapse list-unstyled pl-3">
+                            <li><a class="text-decoration-none" href="#">ورزشی</a></li>
+                            <li><a class="text-decoration-none" href="#">لاکچری</a></li>
+                        </ul>
+                    </li>
+                    <li class="pb-3">
+                        <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
+                            محصول
+                            <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
+                        </a>
+                        <ul id="collapseThree" class="collapse list-unstyled pl-3">
+                            <li><a class="text-decoration-none" href="#">کیف</a></li>
+                            <li><a class="text-decoration-none" href="#">ژاکت</a></li>
+                            <li><a class="text-decoration-none" href="#">عينك آفتابي</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-lg-9">
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul class="list-inline shop-top-menu pb-3 pt-1 padd-r-0">
+                            <li class="list-inline-item">
+                                <a class="h3 text-dark text-decoration-none mr-3" href="#">همه</a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a class="h3 text-dark text-decoration-none mr-3" href="#">مردانه</a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a class="h3 text-dark text-decoration-none" href="#">زنانه</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 pb-4">
+                        <div class="d-flex">
+                            <select class="form-control">
+                                <option>ویژه</option>
+                                <option>آ تا ه</option>
+                                <option>مورد</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    {% for product in products %}
+                        {% include 'includes/product_item_partial.html' with product=product %}
+                    {% endfor %}
+                </div>
+                <div class="row">
+                    <ul class="pagination pagination-lg justify-content-end">
+                        <li class="page-item disabled">
+                            <a class="page-link active rounded-0 mr-3 shadow-sm border-top-0 border-left-0" href="#" tabindex="-1">1</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="#">2</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark" href="#">3</a>
+                        </li>
+                    </ul>
+                </div>
+                </div>
+
+        </div>
+    </div>
+{% endblock %}
