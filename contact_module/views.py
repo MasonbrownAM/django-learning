@@ -1,15 +1,16 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from .forms import ContactForm
+from .forms import ContactModelForm
 # Create your views here.
+from .models import ContactUs
 def contact_us(request):
+    contact_form = ContactModelForm(request.POST)
     if request.method == 'POST':
-        contact_form = ContactForm(request.POST)
         if contact_form.is_valid():
-            print(contact_form.cleaned_data)
+            contact_form.save()
             return redirect(reverse('home'))
     else:# if this is get method
-        contact_form = ContactForm()
+        contact_form = ContactModelForm()
     return render(request, 'contact_module/contact_us.html',{
         'contact_form': contact_form,
     })
