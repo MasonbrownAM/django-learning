@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from django.views.generic import FormView
 from .forms import ContactModelForm
+
 # Create your views here.
-from .models import ContactUs
 def contact_us(request):
     contact_form = ContactModelForm(request.POST)
     if request.method == 'POST':
