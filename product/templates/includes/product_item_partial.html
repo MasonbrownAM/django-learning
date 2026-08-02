@@ -11,7 +11,7 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <a href="{% url 'product-detail' slug=product.slug %}" class="h3 text-decoration-none">{{product.titel}}</a>
+                                <a href="{{ product.get_absolute_url }}" class="h3 text-decoration-none">{{product.titel}}</a>
                                 <ul class="w-100 list-unstyled d-flex justify-content-between mb-0 padd-r-0">
                                     <li>{{product.short_desc}}</li>
                                     <li class="pt-2">
