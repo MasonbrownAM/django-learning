@@ -1,17 +1,26 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import FormView
+from django.views.generic import FormView, CreateView
 from .forms import ContactModelForm
+from .models import ContactUs
+
 
 # Create your views here.
-class ContactForm(FormView):
-    template_name = 'contact_module/contact_us.html'
+class ContactForm(CreateView):
+    model = ContactUs
     form_class = ContactModelForm
+    template_name = 'contact_module/contact_us.html'
     success_url = reverse_lazy('home')
-    def form_valid(self, form):
-        form.save()
-        return super(ContactForm, self).form_valid(form)
 
+
+# class ContactForm(FormView):
+#     template_name = 'contact_module/contact_us.html'
+#     form_class = ContactModelForm
+#     success_url = reverse_lazy('home')
+#     def form_valid(self, form):
+#         form.save()
+#         return super(ContactForm, self).form_valid(form)
+#
 
 # def contact_us(request):
 #     contact_form = ContactModelForm(request.POST)
