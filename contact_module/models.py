@@ -14,3 +14,6 @@ class ContactUs(models.Model):
         ordering = ('name',)
     def __str__(self):
         return f'{self.name}--{self.title}'
+
+class userProfile(models.Model):
+    image = models.FileField(upload_to = 'images/', null=True, blank=True)

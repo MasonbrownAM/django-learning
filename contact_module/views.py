@@ -2,18 +2,27 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import FormView, CreateView
 from django.views import View
-from .forms import ContactModelForm
-from .models import ContactUs
+from .forms import ContactModelForm, CreateProfileForm
+from .models import ContactUs, userProfile
 
 
 # Create your views here.
 class CreateProfileView(View):
     def get(self, request):
-        return render(request, 'contact_module/create_profile.html',)
-    def post(self, request):
-        print(request.POST)
-        return redirect(reverse('create_profile'))
+        form = CreateProfileForm()
+        return render(request, 'contact_module/create_profile.html', {
+            'form': form,
+        })
 
+    def post(self, request):
+        submitted_form = CreateProfileForm(request.POST, request.FILES)
+        if submitted_form.is_valid():
+            profile = userProfile(image=request.FILES['user_image'])
+            profile.save()
+            return redirect('home')
+        return render(request, 'contact_module/create_profile.html', {
+            'form': submitted_form,
+        })
 
 class ContactForm(CreateView):
     model = ContactUs

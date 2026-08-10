@@ -1,4 +1,5 @@
 from django import forms
+from django.views.generic import CreateView
 from pkg_resources import require
 from .models import ContactUs
 class ContactModelForm(forms.ModelForm):
@@ -45,3 +46,6 @@ class ContactModelForm(forms.ModelForm):
         }
         # fields = '__all__'
         # exclude = ('id',)
+
+class CreateProfileForm(forms.Form):
+    user_image = forms.FileField()
