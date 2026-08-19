@@ -48,4 +48,4 @@ class ContactModelForm(forms.ModelForm):
         # exclude = ('id',)
 
 class CreateProfileForm(forms.Form):
-    user_image = forms.FileField()
+    user_image = forms.ImageField()
