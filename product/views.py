@@ -1,6 +1,6 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Product
-from django.views.generic import TemplateView, ListView,DetailView
+from django.views.generic import TemplateView, ListView, DetailView, CreateView, View
 
 
 # Create your views here.
@@ -17,6 +17,16 @@ class ProductDetailView(DetailView):
     template_name = 'product/product_detail.html'
     model = Product
     context_object_name = 'pro'
+
+class AddProductFavorite(View):
+        def post(self, request):
+            product_id = request.POST.get('productID')
+            favorite = request.session.get('favorite', [])
+            if product_id not in favorite:
+                favorite.append(product_id)
+                request.session['favorite'] = favorite
+            product = Product.objects.get(pk=product_id)
+            return redirect(product.get_absolute_url())
 
 # class ProductListView(TemplateView):
 #     template_name = 'product/product_list.html'
