@@ -31,6 +31,7 @@ class ProductBrand(models.Model):
 class Product(models.Model):
     titel = models.CharField(max_length=300, db_index=True)
     category = models.ManyToManyField(ProductsCategory, related_name='products_category', verbose_name='کتگوری')
+    image = models.ImageField(upload_to='images/products/', blank=True, null=True, verbose_name='عکس محصول')
     price = models.PositiveBigIntegerField(verbose_name='قیمت')
     short_desc = models.TextField(max_length=360, null=True, blank=True, verbose_name='توضیحات اصلی')
     is_active = models.BooleanField(default=False)

@@ -7,9 +7,20 @@
     <section class="bg-light">
         <div class="container pb-5">
             <div class="row">
+            <div class="col-md-12">
+                {% if favorite_products %}
+                <p>
+                    added
+                </p>
+                {% endif %}
+            </div>
                 <div class="col-lg-5 mt-5">
                     <div class="card mb-3">
+                        {% if pro.image %}
+                        <img class="card-img img-fluid" src="{{ pro.image.url }}" alt="{{ pro.slug }}" id="product-detail">
+                        {% else %}
                         <img class="card-img img-fluid" src="/static/img/product_single_10.jpg" alt="Card image cap" id="product-detail">
+                        {% endif%}
                     </div>
                     <div class="row">
                         <!--Start Controls-->

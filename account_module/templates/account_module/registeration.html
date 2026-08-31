@@ -1,0 +1,44 @@
+{% extends 'shared/_layout.html' %}
+{% block title %}
+    ثبتنام
+{% endblock %}
+{% block content %}
+  <div class="container py-5">
+        <div class="row py-5">
+            <form class="col-sm-6 col-md-offset-3" method="post" role="form" action="{% url 'register' %}">
+                {% csrf_token %}
+                {{ register_form.email.label_tag }}
+                {{ register_form.email }}
+                {{ register_form.password.label_tag }}
+                {{ register_form.password }}
+                {{ register_form.password_confirm.label_tag }}
+                {{ register_form.password_confirm }}
+                {{ register_form.errors }}
+
+                <div class="row">
+                    <div class="col text-end mt-2">
+                        <button type="submit" class="btn btn-success btn-lg px-3">تایید</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+{#                <div class="row">#}
+{#                    <div class="form-group col-md-6 mb-3">#}
+{#                        <label for="inputname">نام</label>#}
+{#                        <input type="text" class="form-control mt-1" id="name" name="name" placeholder="نام">#}
+{#                    </div>#}
+{#                    <div class="form-group col-md-6 mb-3">#}
+{#                        <label for="inputemail">ایمیل</label>#}
+{#                        <input type="email" class="form-control mt-1" id="email" name="email" placeholder="ایمیل">#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="mb-3">#}
+{#                    <label for="">رمز</label>#}
+{#                    <input type="text" class="form-control mt-1" id="subject" name="subject" placeholder="رمز">#}
+{#                </div>#}
+{#                <div class="mb-3">#}
+{#                    <label for="inputmessage">تایید رمز</label>#}
+{#                    <input type="text" class="form-control mt-1" id="subject" name="subject" placeholder="تایید رمز">#}
+{#                </div>#}

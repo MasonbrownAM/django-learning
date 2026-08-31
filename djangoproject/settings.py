@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'home_module',
     'product',
     'django_render_partial',
-    'contact_module'
+    'contact_module',
+    'account_module'
 ]
 
 MIDDLEWARE = [
@@ -77,6 +78,7 @@ WSGI_APPLICATION = 'djangoproject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+AUTH_USER_MODEL = 'account_module.User'# CLASS NAME IN ACCOUNT_MODULEs
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
