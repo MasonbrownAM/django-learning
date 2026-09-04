@@ -21,7 +21,11 @@ class RegisterForm(forms.Form):
     )
     password = forms.CharField(
         label='رمز',
-        widget=forms.PasswordInput()
+        widget=forms.PasswordInput(),
+        validators=[
+            validators.MaxLengthValidator(100),
+            validators.EmailValidator()
+        ]
     )
     password_confirm = forms.CharField(
         widget=forms.PasswordInput(),
@@ -40,3 +44,23 @@ class RegisterForm(forms.Form):
             raise ValidationError('رمز یکی نیست!')
         else:
             return password_confirm
+
+
+class LoginForm(forms.Form):
+    email = forms.EmailField(
+        widget=forms.EmailInput(),
+        label = 'ایمیل',
+        validators=
+        [
+            validators.MaxLengthValidator(100),
+            validators.EmailValidator()
+        ]
+    )
+    password = forms.CharField(
+        label='رمز',
+        widget=forms.PasswordInput(),
+        validators=[
+            validators.MaxLengthValidator(100),
+            validators.EmailValidator()
+        ]
+    )

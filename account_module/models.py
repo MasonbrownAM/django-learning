@@ -3,7 +3,7 @@ from django.db import models
 
 # Create your models here.
 class User(AbstractUser):
-    mobile = models.CharField(max_length=20, unique=True, verbose_name='شماره تلفن')
+    avatar = models.CharField(max_length=20, unique=True, verbose_name='avatar', blank=True, null=True)
     email_active_code = models.CharField(max_length=100, verbose_name='کد فعالسازی', unique=True)
 
     class meta:
