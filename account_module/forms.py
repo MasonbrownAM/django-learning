@@ -24,7 +24,6 @@ class RegisterForm(forms.Form):
         widget=forms.PasswordInput(),
         validators=[
             validators.MaxLengthValidator(100),
-            validators.EmailValidator()
         ]
     )
     password_confirm = forms.CharField(
@@ -40,10 +39,11 @@ class RegisterForm(forms.Form):
     def clean_password_confirm(self):
         password = self.cleaned_data.get('password')
         password_confirm = self.cleaned_data.get('password_confirm')
-        if password != password_confirm:
-            raise ValidationError('رمز یکی نیست!')
-        else:
+        if password == password_confirm:
             return password_confirm
+        else:
+            raise ValidationError('رمز یکی نیست')
+
 
 
 class LoginForm(forms.Form):
@@ -61,6 +61,5 @@ class LoginForm(forms.Form):
         widget=forms.PasswordInput(),
         validators=[
             validators.MaxLengthValidator(100),
-            validators.EmailValidator()
         ]
     )

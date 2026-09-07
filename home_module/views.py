@@ -11,6 +11,7 @@ class HomeView(TemplateView):
         return context
 
 def site_header_partial(request):
+
     return render(request, 'shared/site_header_partial.html',{})
 
 def site_footer_partial(request):

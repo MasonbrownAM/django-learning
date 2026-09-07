@@ -9,11 +9,12 @@
                 {% csrf_token %}
                 {{ register_form.email.label_tag }}
                 {{ register_form.email }}
+                {{ register_form.email.errors }}
                 {{ register_form.password.label_tag }}
                 {{ register_form.password }}
                 {{ register_form.password_confirm.label_tag }}
                 {{ register_form.password_confirm }}
-                {{ register_form.errors }}
+                {{ register_form.password_confirm.errors }}
 
                 <div class="row">
                     <div class="col text-end mt-2">
