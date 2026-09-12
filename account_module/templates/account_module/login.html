@@ -12,7 +12,7 @@
                 {{ login_form.password.label_tag }}
                 {{ login_form.password }}
                 {{ login_form.errors }}
-
+                <p><a href="{% url 'forget-password' %}">بازیابی رمز عبور</a> </p>
                 <div class="row">
                     <div class="col text-end mt-2">
                         <button type="submit" class="btn btn-success btn-lg px-3">تایید</button>
