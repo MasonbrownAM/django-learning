@@ -1,7 +1,9 @@
-from django.shortcuts import render, redirect
-from django.urls import reverse_lazy, reverse
+
+from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView
-from .forms import ContactModelForm, CreateProfileForm
+
+from site_module.models import SiteSettings
+from .forms import ContactModelForm
 from .models import ContactUs, userProfile
 
 
@@ -16,6 +18,11 @@ class ContactForm(CreateView):
     form_class = ContactModelForm
     template_name = 'contact_module/contact_us.html'
     success_url = reverse_lazy('home')
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        site_settings = SiteSettings.objects.filter(is_main_setting=True).first()
+        context['site_setting'] = site_settings
+        return context
 
 class ProfileView(ListView):
     model = userProfile

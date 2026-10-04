@@ -24,8 +24,8 @@
     <nav class="navbar navbar-expand-lg navbar-light shadow">
         <div class="container d-flex justify-content-between align-items-center">
 
-            <a class="navbar-brand text-success logo h1 align-self-center" href="index.html">
-                زی
+            <a class="navbar-brand logo" href="{% url 'home' %}">
+                <img src="{{ site_settings.site_logo.url }}" alt="logo">
             </a>
 
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,7 +39,7 @@
                             <a class="nav-link" href="{% url 'home' %}">خانه</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="about.html">درباره</a>
+                            <a class="nav-link" href="{% url 'about' %}">درباره</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'product_list' %}">فروشگاه</a>
@@ -65,10 +65,27 @@
                         <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
                         <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark left-0">7</span>
                     </a>
+                    {% if request.user.is_authinticated %}
+                        {% if request.user.is_superuser %}
+                            <a class="nav-icon position-relative text-decoration-none" href="/admin">
+                            <i class="fa fa-fw fa-user text-dark mr-3"></i>
+                            <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark left-0">خروج</span>
+                            </a>
+                        {% endif %}
+                        <a class="nav-icon position-relative text-decoration-none" href="{% url 'logout' %}">
+                        <i class="fa fa-fw fa-user text-dark mr-3"></i>
+                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark left-0">خروج</span>
+                    </a>
+                    {% else %}
                     <a class="nav-icon position-relative text-decoration-none" href="{% url 'register' %}">
                         <i class="fa fa-fw fa-user text-dark mr-3"></i>
-                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark left-0">+99</span>
+                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark left-0">ثبت نام</span>
+                        <a class="nav-icon position-relative text-decoration-none" href="{% url 'login' %}">
+                        <i class="fa fa-fw fa-user text-dark mr-3"></i>
+                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark left-0">ورود</span>
                     </a>
+                    </a>
+                    {% endif %}
                 </div>
             </div>
 

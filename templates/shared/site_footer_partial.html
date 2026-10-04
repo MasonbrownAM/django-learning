@@ -4,47 +4,32 @@
             <div class="row">
 
                 <div class="col-md-4 pt-5">
-                    <h2 class="h2 text-success border-bottom pb-3 border-light logo">فروشگاه زی</h2>
+                    <h2 class="h2 text-success border-bottom pb-3 border-light logo">{{ site_settings.site_name}}</h2>
                     <ul class="list-unstyled text-light footer-link-list padd-r-0">
                         <li>
                             <i class="fas fa-map-marker-alt fa-fw"></i>
-                            تهران ، کریم خان
+                            {{ site_settings.address}}
                         </li>
                         <li>
                             <i class="fa fa-phone fa-fw"></i>
-                            <a class="text-decoration-none" href="tel:010-020-0340">021-020-0340</a>
+                            <a class="text-decoration-none" href="tel:010-020-0340">{{ site_settings.phone }}</a>
                         </li>
                         <li>
                             <i class="fa fa-envelope fa-fw"></i>
-                            <a class="text-decoration-none" href="mailto:info@company.com">info@company.com</a>
+                            <a class="text-decoration-none" href="mailto:info@company.com">{{ site_settings.email}}</a>
                         </li>
                     </ul>
                 </div>
-
+            {% for item in footer_link_boxes %}
                 <div class="col-md-4 pt-5">
-                    <h2 class="h2 text-light border-bottom pb-3 border-light">محصولات</h2>
+                    <h2 class="h2 text-light border-bottom pb-3 border-light">{{ item.title }}</h2>
                     <ul class="list-unstyled text-light footer-link-list padd-r-0">
-                        <li><a class="text-decoration-none" href="#">لاکچری</a></li>
-                        <li><a class="text-decoration-none" href="#">لباس ورزشی</a></li>
-                        <li><a class="text-decoration-none" href="#">کفش مردانه</a></li>
-                        <li><a class="text-decoration-none" href="#">کفش زنانه</a></li>
-                        <li><a class="text-decoration-none" href="#">لباس محبوب</a></li>
-                        <li><a class="text-decoration-none" href="#">لوازم بدنسازی</a></li>
-                        <li><a class="text-decoration-none" href="#">کفش ورزشی</a></li>
+                        {% for link in item.footerlink_set.all %}
+                        <li><a class="text-decoration-none" href="{{link.url}}">{{ link.title }}</a></li>
+                        {% endfor %}
                     </ul>
                 </div>
-
-                <div class="col-md-4 pt-5">
-                    <h2 class="h2 text-light border-bottom pb-3 border-light">اطلاعات بیشتر</h2>
-                    <ul class="list-unstyled text-light footer-link-list padd-r-0">
-                        <li><a class="text-decoration-none" href="#">خانه</a></li>
-                        <li><a class="text-decoration-none" href="#">درباره ما</a></li>
-                        <li><a class="text-decoration-none" href="#">آدرس فروشگاه</a></li>
-                        <li><a class="text-decoration-none" href="#">سوالات متداول</a></li>
-                        <li><a class="text-decoration-none" href="#">تماس با ما</a></li>
-                    </ul>
-                </div>
-
+            {% endfor %}
             </div>
 
             <div class="row text-light mb-4">
@@ -82,7 +67,7 @@
                 <div class="row pt-2">
                     <div class="col-12">
                         <p class="text-left text-light">
-                           کلیه حقوق محفوظ است
+                            {{ site_settings.copyright}}
                         </p>
                     </div>
                 </div>
