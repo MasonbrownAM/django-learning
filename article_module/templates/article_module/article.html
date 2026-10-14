@@ -1,0 +1,29 @@
+{% extends 'shared/_layout.html' %}
+{% load thumbnail %}
+{% block title %}
+لیست مقالات
+{% endblock %}
+
+{% block content %}
+
+    {% for article in articles %}
+    <div class="img t">
+    {% thumbnail article.image '200x200' crop='center' as im %}
+        <img src="{{ im.url }}" alt="my image">
+    {% endthumbnail %}
+    </div>
+    	  <div class="h1">
+    <h1>
+        {{ article.title }}
+    </h1>
+    <p class="content">
+        {{ article.short_description }}
+    </p>
+    <p class="date">
+        {{ article.date }}
+    </p>
+    </div>
+    {% endfor %}
+
+
+{% endblock %}

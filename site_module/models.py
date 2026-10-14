@@ -40,6 +40,7 @@ class Slider(models.Model):
     description =  models.TextField(max_length=200, verbose_name='توضیحات', null=True, blank=True)
     image = models.ImageField(upload_to='images/sliders', null=True, blank=True, verbose_name='تصویر اسلایدر')
     is_active = models.BooleanField(verbose_name='فعال/غیر فعال', default=True, blank=True,null=True)
+    url = models.URLField(max_length=200, blank=True, null=True)
     class Meta:
         verbose_name = 'اسلایدر'
 
