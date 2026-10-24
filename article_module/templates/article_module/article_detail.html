@@ -1,0 +1,15 @@
+{% extends 'shared/_layout.html' %}
+{% load thumbnail %}
+{% load poll_extras %}
+{% load render_partial %}
+{% block title %}
+{{ article.title }}
+{% endblock %}
+{% block content %}
+    <h1>{{ article.title }}</h1>
+<p>{{ article.content }}</p>
+        {% thumbnail article.image '200x200' crop='center' as im %}
+        <img src="{{ im.url }}", alt="{{ article.title }}">
+    {% endthumbnail %}
+    <p>{{ article.author }}</p>
+{% endblock %}

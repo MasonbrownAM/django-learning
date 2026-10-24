@@ -1,4 +1,9 @@
+from jalali_date import datetime2jalali, date2jalali
+
 from django.db import models
+
+from account_module.models import User
+
 
 # Create your models here.
 
@@ -21,9 +26,16 @@ class Article(models.Model):
     slug = models.SlugField(max_length=200, unique=True, db_index=True, allow_unicode=True, verbose_name='عنوان در url', blank=True, null=True)
     image = models.ImageField(upload_to='images/article_images', blank=True, null=True)
     short_description = models.TextField(blank=True, null=True)
-    cathegory = models.ManyToManyField('ArticleCathegory', blank=True)
+    category = models.ManyToManyField('ArticleCathegory', blank=True)
+    author = models.ForeignKey(User , on_delete=models.CASCADE, blank=True, null=True, verbose_name='نویسنده', editable=False)
+
+
     class Meta:
         verbose_name = ' مقاله'
         verbose_name_plural = 'مقالات'
     def __str__(self):
         return self.title
+    def get_jalali_create_date(self):
+        return date2jalali(self.date)
+    def get_jalali_time(self):
+        return self.date.strftime('%H:%M')

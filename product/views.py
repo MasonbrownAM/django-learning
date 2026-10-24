@@ -23,7 +23,7 @@ class ProductDetailView(DetailView):
         context = super(ProductDetailView, self).get_context_data(**kwargs)
         loaded_object = self.object # getting the product ID
         favorite_products = self.request.session.get('favorite') # fetching the favorit IDs
-        if str(loaded_object.id) in favorite_products: # if the product was in the favorite items
+        if favorite_products is not None and str(loaded_object.id) in favorite_products: # if the product was in the favorite items
             context['favorite_products'] = True
         return context
 

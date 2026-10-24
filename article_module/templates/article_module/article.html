@@ -1,11 +1,14 @@
 {% extends 'shared/_layout.html' %}
 {% load thumbnail %}
+{% load poll_extras %}
+{% load render_partial %}
 {% block title %}
+
 لیست مقالات
 {% endblock %}
 
 {% block content %}
-
+    {% render_partial  'article_module.views.article_categories_partial'%}
     {% for article in articles %}
     <div class="img t">
     {% thumbnail article.image '200x200' crop='center' as im %}
@@ -20,10 +23,34 @@
         {{ article.short_description }}
     </p>
     <p class="date">
-        {{ article.date }}
+        {{ article.date | jalali_date }}_ {{ article.get_jalali_time }}
     </p>
     </div>
+        <div>
+        {% if article.author is not None %}
+            <p>{{ article.author }}</p>
+        {% endif %}
+        </div>
+        <p>
+        <a class="btn btn-primary" href="{% url 'article_detail' pk=article.id title=article.title %}">ادامه مطلب</a>
+        </p>
     {% endfor %}
-
+ <ul class="pagination pagination-lg justify-content-end">
+                        {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark" href="?page={{ page_obj.next_page_number }}">بعدی</a>
+                            </li>
+                        {% endif %}
+                        {% for pageN in paginator.page_range %}
+                            <li class="page-item">
+                            <a class="page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark" href="?page={{ pageN }}">{{ pageN }}</a>
+                            </li>
+                        {% endfor %}
+                    {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark" href="?page={{ page_obj.previous_page_number }}">قبلی</a>
+                            </li>
+                    {% endif %}
+                    </ul>
 
 {% endblock %}
